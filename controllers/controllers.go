@@ -47,12 +47,12 @@ func AuthUser(c *fiber.Ctx) error {
 	}
 
 	var StoredUser Models.User
-	err := db.QueryRow("SELECT id, name, password FROM Users WHERE id=$1", User.id)
+	err := db.QueryRow("SELECT id, name, password FROM Users WHERE id=$1", User.Id)
 	if err != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"Message": "Invalid User"})
 	}
 
-	if User.password != StoredUser.password {
+	if User.Password != StoredUser.Password {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"Message": "Invalid Password"})
 	}
 
