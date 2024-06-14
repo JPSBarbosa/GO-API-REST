@@ -2,8 +2,11 @@ package controllers
 
 import (
 	"github.com/JPSBarbosa/GO-API-REST/Models"
+	"github.com/JPSBarbosa/GO-API-REST/Service"
+	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber/v2"
 	"net/http"
+	"strconv"
 )
 
 func GetSession(c *fiber.Ctx) error {
@@ -31,30 +34,63 @@ func Teste(c *fiber.Ctx) error {
 	return c.SendString("Teste")
 }
 
-func RegisterUser(c *fiber.Ctx) error {
-	var newUser Models.User
-	if err := c.ParamsParser(&newUser); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"Message": "Invalid Request"})
-	}
-
-	return c.Status(fiber.StatusCreated).JSON(fiber.Map{"Message": "User Created"})
+type ProductController struct {
+	Service *Service.ProductsService
 }
 
-func AuthUser(c *fiber.Ctx) error {
-	var User Models.User
-	if err := c.ParamsParser(&User); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"Message": "Invalid User"})
-	}
+func NewProductController(service *Service.ProductsService) *ProductController {
+	return &ProductController{Service: service}
+}
 
-	var StoredUser Models.User
-	err := db.QueryRow("SELECT id, name, password FROM Users WHERE id=$1", User.Id)
+func (p *ProductController) GetProduct(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	product, err := p.Service.FindById(uint(id))
 	if err != nil {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"Message": "Invalid User"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
+		return
+	}
+	c.JSON(http.StatusOK, product)
+}
+
+func (p *ProductController) CreateProduct(c *gin.Context) {
+	var product Models.Products
+	if err := c.ShouldBindJSON(&product); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
-	if User.Password != StoredUser.Password {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"Message": "Invalid Password"})
+	id, err := p.Service.SaveProduct(product)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	product.ID = id
+	c.JSON(http.StatusOK, product)
+}
+
+func (p *ProductController) UpdateProduct(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var product Models.Products
+	if err := c.ShouldBindJSON(&product); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{"Message": "User Authenticated"})
+	updatedProduct, err := p.Service.UpdateProduct(product, uint(id))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, updatedProduct)
+}
+
+func (p *ProductController) DeleteProduct(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	if err := p.Service.DeleteById(uint(id)); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Product deleted"})
 }
