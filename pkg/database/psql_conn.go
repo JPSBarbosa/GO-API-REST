@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"github.com/JPSBarbosa/GO-API-REST/Models"
+	"github.com/JPSBarbosa/GO-API-REST/internal/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -10,9 +10,7 @@ import (
 	"os"
 )
 
-var DB *gorm.DB
-
-func Init() {
+func PostgreSQL() *gorm.DB {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -26,12 +24,14 @@ func Init() {
 		os.Getenv("DB_PORT"),
 	)
 
-	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Println("Database connected successfully")
 
-	DB.AutoMigrate(&Models.Products{})
+	db.AutoMigrate(&models.Product{})
+
+	return db
 }
