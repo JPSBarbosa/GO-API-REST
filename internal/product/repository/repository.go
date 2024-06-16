@@ -38,7 +38,7 @@ func (s *productsService) Update(product models.Product) (*models.Product, error
 		return nil, result.Error
 	}
 	exist.Name = product.Name
-	exist.Description = product.Name
+	exist.Description = product.Description
 	exist.Price = product.Price
 	exist.Quantity = product.Quantity
 
