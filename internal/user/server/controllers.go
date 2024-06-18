@@ -1,6 +1,5 @@
 package server
 
-import "C"
 import (
 	"github.com/JPSBarbosa/GO-API-REST/internal/models"
 	"github.com/JPSBarbosa/GO-API-REST/internal/user"
