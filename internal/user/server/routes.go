@@ -1,4 +1,4 @@
-package server
+package UserServer
 
 import (
 	"github.com/JPSBarbosa/GO-API-REST/internal/user"
