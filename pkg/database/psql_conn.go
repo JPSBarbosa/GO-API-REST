@@ -31,7 +31,15 @@ func PostgreSQL() *gorm.DB {
 
 	fmt.Println("Database connected successfully")
 
-	db.AutoMigrate(&models.Product{})
+	err = db.AutoMigrate(&models.Product{})
+	if err != nil {
+		panic(err)
+	}
+
+	err = db.AutoMigrate(&models.User{})
+	if err != nil {
+		panic(err)
+	}
 
 	return db
 }

@@ -50,7 +50,7 @@ func (t *userRepository) Update(user models.User) (*models.User, error) {
 }
 
 func (t *userRepository) DeleteById(id uint) error {
-	result := t.db.Delete(&models.Product{}, id)
+	result := t.db.Delete(&models.User{}, id)
 	if result.Error != nil {
 		return result.Error
 	}
