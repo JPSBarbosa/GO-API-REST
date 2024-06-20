@@ -11,7 +11,7 @@ Uma API em GO, com CRUDs de usuários e produtos, seguindo a arquitetura propost
 
 ## Descrição
 
-Este projeto é uma API RESTful desenvolvida em Go, que implementa operações CRUD (Create, Read, Update, Delete) para usuários e produtos. Ele segue os princípios do Clean Architecture de Robert Cecil Martin, garantindo um código modular e fácil de manter. A API utiliza o Gin Gonic para o roteamento, GORM para interações com o banco de dados e SQL como o banco de dados subjacente. Ideal para aplicações que exigem uma estrutura robusta e escalável.
+Este projeto é uma API RESTful desenvolvida em Go, que implementa operações CRUD (Create, Read, Update, Delete) para usuários e produtos. A API utiliza o Gin Gonic para o roteamento, GORM para interações com o banco de dados e SQL como o banco de dados subjacente.
 
 ## Instalação
 
