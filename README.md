@@ -6,7 +6,6 @@ An API in GO, with CRUD operations for users and products, following the archite
 
 - [Description](#description)
 - [Installation](#installation)
-- [License](#license)
 - [Contact](#contact)
 
 ## Description
