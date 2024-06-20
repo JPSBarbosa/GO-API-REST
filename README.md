@@ -1,64 +1,61 @@
 # GO-API-REST
 
-Uma API em GO, com CRUDs de usuários e produtos, seguindo a arquitetura proposta no Clean Architecture de Robert Cecil Martin. Utiliza GORM, Gin Gonic e SQL.
+An API in GO, with CRUD operations for users and products, following the architecture proposed in Robert Cecil Martin's Clean Architecture. It utilizes GORM, Gin Gonic, and SQL.
 
-## Índice
+## Table of Contents
 
-- [Descrição](#descrição)
-- [Instalação](#instalação)
-- [Licença](#licença)
-- [Contato](#contato)
+- [Description](#description)
+- [Installation](#installation)
+- [License](#license)
+- [Contact](#contact)
 
-## Descrição
+## Description
 
-Este projeto é uma API RESTful desenvolvida em Go, que implementa operações CRUD (Create, Read, Update, Delete) para usuários e produtos. A API utiliza o Gin Gonic para o roteamento, GORM para interações com o banco de dados e SQL como o banco de dados subjacente.
+This project is a RESTful API developed in Go, implementing CRUD (Create, Read, Update, Delete) operations for users and products. The API uses Gin Gonic for routing, GORM for database interactions, and SQL as the underlying database.
 
-## Instalação
+## Installation
 
-Instruções para instalar e configurar o projeto.
+Instructions to install and set up the project.
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/JPSBarbosa/GO-API-REST.git
 
-# Entre no diretório do projeto
+# Navigate to the project directory
 cd ./cmd/api
 
-# Instale as dependências
+# Install dependencies
 go mod tidy
 
-# Configure seu banco de dados (ajuste o arquivo .env conforme necessário)
-# Exemplo de configuração do .env:
+# Configure your database (adjust the .env file as needed)
+# Example .env configuration:
 # DB_HOST=localhost
-# DB_USER=seu_usuario
-# DB_PASSWORD=sua_senha
-# DB_NAME=seu_banco_de_dados
+# DB_USER=your_user
+# DB_PASSWORD=your_password
+# DB_NAME=your_database
 # DB_PORT=3306
 
-# Inicie a aplicação
+# Start the application
 go run main.go
+
 ```
 
-## Endpoints Disponíveis
+## Endpoints
 
-### Usuários
+### Users
 
-- `POST /users` - Cria um novo usuário
-- `GET /users/:id` - Obtém um usuário específico
-- `PUT /users/:id` - Atualiza um usuário específico
-- `DELETE /users/:id` - Exclui um usuário específico
+- `POST /users` - Create a new user
+- `GET /users/:id` - Get a specific user
+- `PUT /users/:id` - Update a specific user
+- `DELETE /users/:id` - Delete a specific user
 
-### Produtos
+### Products
 
-- `POST /products` - Cria um novo produto
-- `GET /products/:id` - Obtém detalhes de um produto específico
-- `PUT /products/:id` - Atualiza um produto específico
-- `DELETE /products/:id` - Exclui um produto específico
+- `POST /products` - Create a new product
+- `GET /products/:id` - Get details of a specific product
+- `PUT /products/:id` - Update a specific product
+- `DELETE /products/:id` - Delete a specific product
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## Contato
+## Contact
 
 João Pedro S. Barbosa - jpbarbosa.dev@gmail.com
