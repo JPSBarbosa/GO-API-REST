@@ -6,8 +6,6 @@ Uma API em GO, com CRUDs de usuários e produtos, seguindo a arquitetura propost
 
 - [Descrição](#descrição)
 - [Instalação](#instalação)
-- [Uso](#uso)
-- [Contribuição](#contribuição)
 - [Licença](#licença)
 - [Contato](#contato)
 
@@ -21,13 +19,21 @@ Instruções para instalar e configurar o projeto.
 
 ```bash
 # Clone o repositório
-git clone [https://github.com/usuario/projeto.git](https://github.com/JPSBarbosa/GO-API-REST.git)
+git clone https://github.com/JPSBarbosa/GO-API-REST.git
 
 # Entre no diretório do projeto
 cd ./cmd/api
 
 # Instale as dependências
 go mod tidy
+
+# Configure seu banco de dados (ajuste o arquivo .env conforme necessário)
+# Exemplo de configuração do .env:
+# DB_HOST=localhost
+# DB_USER=seu_usuario
+# DB_PASSWORD=sua_senha
+# DB_NAME=seu_banco_de_dados
+# DB_PORT=3306
 
 # Inicie a aplicação
 go run main.go
@@ -48,3 +54,11 @@ go run main.go
 - `GET /products/:id` - Obtém detalhes de um produto específico
 - `PUT /products/:id` - Atualiza um produto específico
 - `DELETE /products/:id` - Exclui um produto específico
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## Contato
+
+João Pedro S. Barbosa - jpbarbosa.dev@gmail.com
